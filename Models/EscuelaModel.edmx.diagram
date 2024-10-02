@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88682d65f01045fbbbc57289454724ee" Name="Diagram1">
+        <EntityTypeShape EntityType="EscuelaModel.Alumnos" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Alumnos_Grupos" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Calificaciones" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Grupos" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Horarios" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Materias" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Profesores" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EscuelaModel.Usuarios" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos__Usuario__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos_G__Alumn__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Calificac__Alumn__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Alumnos_G__Grupo__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Calificac__Mater__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Horario___17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Materia___18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Grupos__Profesor__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="EscuelaModel.FK__Profesore__Usuar__571DF1D5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

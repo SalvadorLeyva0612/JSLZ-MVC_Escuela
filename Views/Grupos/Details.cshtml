@@ -1,0 +1,50 @@
+﻿@model JSLZ_MVC_Escuela.Models.Grupos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Grupos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horarios.Horario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horarios.Horario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materias.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materias.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesores.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesores.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Grupo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

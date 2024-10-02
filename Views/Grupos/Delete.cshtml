@@ -1,0 +1,56 @@
+﻿@model JSLZ_MVC_Escuela.Models.Grupos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Grupos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horarios.Horario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horarios.Horario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materias.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materias.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesores.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesores.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

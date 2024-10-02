@@ -1,0 +1,23 @@
+﻿@model JSLZ_MVC_Escuela.Models.Usuarios
+<h1>Iniciar Sesión</h1>
+@using (Html.BeginForm("Login" , "Login",FormMethod.Post ))
+{
+    Html.AntiForgeryToken();
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre_Usuario)
+        @Html.TextBoxFor(model => model.Nombre_Usuario, new 
+        {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contraseña)
+        @Html.TextBoxFor(model => model.Contraseña, new {@class="form-control" , @type="pass" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+}
+
+
+
