@@ -31,12 +31,23 @@ namespace JSLZ_MVC_Escuela.Controllers
 
                     if (dbUsario != null)
                     {
+                       
                         Session["N_Usuario"] = dbUsario.Nombre_Usuario;
                         Session["rol"] = dbUsario.Rol_ID;
-                        TempData["sweetalert"] =
-                        SweetAlert.Sweet_Alert("Bienvenido", $"Bienvenido Picios@{dbUsario.Nombre_Usuario}", NotificationType.success); 
-
-                       return RedirectToAction("Index", "Grupo/Index");
+                        var rol = Session["rol"].ToString();
+                        if (rol == "2")
+                        {
+                            TempData["sweetalert"] =
+                        SweetAlert.Sweet_Alert("Bienvenido", $"Bienvenido Profesor {dbUsario.Nombre_Usuario}", NotificationType.success);
+                            return RedirectToAction("Index", "Alumnos_Grupos");
+                        }
+                        else
+                        {
+                            TempData["sweetalert"] =
+                        SweetAlert.Sweet_Alert("Bienvenido", $"Bienvenido Alumno {dbUsario.Nombre_Usuario}", NotificationType.success);
+                            return RedirectToAction("Index", "Grupo");
+                        }
+                        
                     }
                     else
                     {

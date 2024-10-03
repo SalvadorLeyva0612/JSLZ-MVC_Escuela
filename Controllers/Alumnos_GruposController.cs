@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JSLZ_MVC_Escuela.Models;
+using JSLZ_MVC_Escuela.Utilidades;
+using static JSLZ_MVC_Escuela.Models.Enum;
 
 namespace JSLZ_MVC_Escuela.Controllers
 {
@@ -15,8 +17,14 @@ namespace JSLZ_MVC_Escuela.Controllers
         private EscuelaEntities db = new EscuelaEntities();
 
         // GET: Alumnos_Grupos
+        
+        
+        
+        
+        
         public ActionResult Index()
         {
+
             var alumnos_Grupos = db.Alumnos_Grupos.Include(a => a.Alumnos).Include(a => a.Grupos);
             return View(alumnos_Grupos.ToList());
         }
@@ -36,33 +44,7 @@ namespace JSLZ_MVC_Escuela.Controllers
             return View(alumnos_Grupos);
         }
 
-        // GET: Alumnos_Grupos/Create
-        public ActionResult Create()
-        {
-            ViewBag.Alumno_ID = new SelectList(db.Alumnos, "ID_Alumno", "Nombre");
-            ViewBag.Grupo_ID = new SelectList(db.Grupos, "ID_Grupo", "Nombre");
-            return View();
-        }
-
-        // POST: Alumnos_Grupos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Alumnos_Grupos,Alumno_ID,Grupo_ID")] Alumnos_Grupos alumnos_Grupos)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Alumnos_Grupos.Add(alumnos_Grupos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Alumno_ID = new SelectList(db.Alumnos, "ID_Alumno", "Nombre", alumnos_Grupos.Alumno_ID);
-            ViewBag.Grupo_ID = new SelectList(db.Grupos, "ID_Grupo", "Nombre", alumnos_Grupos.Grupo_ID);
-            return View(alumnos_Grupos);
-        }
-
+       
         // GET: Alumnos_Grupos/Edit/5
         public ActionResult Edit(int? id)
         {

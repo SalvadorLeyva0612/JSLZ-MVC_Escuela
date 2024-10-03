@@ -1,5 +1,16 @@
-﻿@model IEnumerable<JSLZ_MVC_Escuela.Models.Calificaciones>
+﻿
+@{ 
+    var ses = Session["rol"] as string;
 
+    if (ses != "2")
+    {
+       
+    }
+
+}
+
+
+@model IEnumerable<DTO.Calificaciones_DTO>
 @{
     ViewBag.Title = "agregarCalificacion";
 }
@@ -12,46 +23,43 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Calificacion)
+            @Html.DisplayNameFor(model => model.Nombre_Alumno)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Semestre)
+            @Html.DisplayNameFor(model => model.Materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificacion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Parcial)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Alumnos.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Materias.Nombre)
+            @Html.DisplayNameFor(model => model.Semestre)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Calificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Semestre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parcial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Alumnos.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Materias.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Calificacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Calificacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Calificacion })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Materia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parcial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semestre)
+            </td>
+
+        </tr>
+    }
 
 </table>
