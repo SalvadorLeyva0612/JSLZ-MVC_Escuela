@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EscuelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EscuelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alumnos">
           <Key>
             <PropertyRef Name="ID_Alumno" />
@@ -53,6 +53,17 @@
           <Property Name="ID_Horario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Horario" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="listaenGrupos">
+          <Key>
+            <PropertyRef Name="ID_GrupoAlum" />
+          </Key>
+          <Property Name="ID_GrupoAlum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupo_ID" Type="int" />
+          <Property Name="Alumno_ID" Type="int" />
+          <Property Name="Profe_ID" Type="int" />
+          <Property Name="Materia_ID" Type="int" />
+          <Property Name="Horario_ID" Type="int" />
+        </EntityType>
         <EntityType Name="Materias">
           <Key>
             <PropertyRef Name="ID_Materia" />
@@ -81,6 +92,8 @@
           <Property Name="Rol_ID" Type="int" />
           <Property Name="disponibilidad" Type="bit" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Escuela.dbo.view_AlumnosGrupos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <Association Name="FK__Alumnos__Usuario__4E88ABD4">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
@@ -177,6 +190,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__listaenGr__Alumn__09746778">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="listaenGrupos" Type="Self.listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Horar__0880433F">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="0..1" />
+          <End Role="listaenGrupos" Type="Self.listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Grupo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Horar__0C50D423">
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="0..1" />
+          <End Role="listaenGrupos" Type="Self.listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horarios">
+              <PropertyRef Name="ID_Horario" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Horario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Mater__0B5CAFEA">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="listaenGrupos" Type="Self.listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Profe__0A688BB1">
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
+          <End Role="listaenGrupos" Type="Self.listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID_Profesor" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Profe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Profesore__Usuar__571DF1D5">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
           <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
@@ -195,6 +268,7 @@
           <EntitySet Name="Calificaciones" EntityType="Self.Calificaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="listaenGrupos" EntityType="Self.listaenGrupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
@@ -230,13 +304,32 @@
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="Grupos" EntitySet="Grupos" />
           </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Alumn__09746778" Association="Self.FK__listaenGr__Alumn__09746778">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Horar__0880433F" Association="Self.FK__listaenGr__Horar__0880433F">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Horar__0C50D423" Association="Self.FK__listaenGr__Horar__0C50D423">
+            <End Role="Horarios" EntitySet="Horarios" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Mater__0B5CAFEA" Association="Self.FK__listaenGr__Mater__0B5CAFEA">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Profe__0A688BB1" Association="Self.FK__listaenGr__Profe__0A688BB1">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
           <AssociationSet Name="FK__Profesore__Usuar__571DF1D5" Association="Self.FK__Profesore__Usuar__571DF1D5">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Profesores" EntitySet="Profesores" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EscuelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -254,6 +347,7 @@
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Alumnos__Usuario__4E88ABD4" FromRole="Alumnos" ToRole="Usuarios" />
           <NavigationProperty Name="Alumnos_Grupos" Relationship="Self.FK__Alumnos_G__Alumn__1CBC4616" FromRole="Alumnos" ToRole="Alumnos_Grupos" />
           <NavigationProperty Name="Calificaciones" Relationship="Self.FK__Calificac__Alumn__7C4F7684" FromRole="Alumnos" ToRole="Calificaciones" />
+          <NavigationProperty Name="listaenGrupos" Relationship="EscuelaModel.FK__listaenGr__Alumn__09746778" FromRole="Alumnos" ToRole="listaenGrupos" />
         </EntityType>
         <EntityType Name="Alumnos_Grupos">
           <Key>
@@ -291,6 +385,7 @@
           <NavigationProperty Name="Horarios" Relationship="Self.FK__Grupos__Horario___17F790F9" FromRole="Grupos" ToRole="Horarios" />
           <NavigationProperty Name="Materias" Relationship="Self.FK__Grupos__Materia___18EBB532" FromRole="Grupos" ToRole="Materias" />
           <NavigationProperty Name="Profesores" Relationship="Self.FK__Grupos__Profesor__19DFD96B" FromRole="Grupos" ToRole="Profesores" />
+          <NavigationProperty Name="listaenGrupos" Relationship="EscuelaModel.FK__listaenGr__Horar__0880433F" FromRole="Grupos" ToRole="listaenGrupos" />
         </EntityType>
         <EntityType Name="Horarios">
           <Key>
@@ -299,6 +394,7 @@
           <Property Name="ID_Horario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Horario___17F790F9" FromRole="Horarios" ToRole="Grupos" />
+          <NavigationProperty Name="listaenGrupos" Relationship="EscuelaModel.FK__listaenGr__Horar__0C50D423" FromRole="Horarios" ToRole="listaenGrupos" />
         </EntityType>
         <EntityType Name="Materias">
           <Key>
@@ -308,6 +404,7 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Calificaciones" Relationship="Self.FK__Calificac__Mater__7D439ABD" FromRole="Materias" ToRole="Calificaciones" />
           <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Materia___18EBB532" FromRole="Materias" ToRole="Grupos" />
+          <NavigationProperty Name="listaenGrupos" Relationship="EscuelaModel.FK__listaenGr__Mater__0B5CAFEA" FromRole="Materias" ToRole="listaenGrupos" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
@@ -321,6 +418,7 @@
           <Property Name="Rol_ID" Type="Int32" />
           <NavigationProperty Name="Grupos" Relationship="Self.FK__Grupos__Profesor__19DFD96B" FromRole="Profesores" ToRole="Grupos" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK__Profesore__Usuar__571DF1D5" FromRole="Profesores" ToRole="Usuarios" />
+          <NavigationProperty Name="listaenGrupos" Relationship="EscuelaModel.FK__listaenGr__Profe__0A688BB1" FromRole="Profesores" ToRole="listaenGrupos" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -487,7 +585,104 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Profesores" EntitySet="Profesores" />
           </AssociationSet>
+          <EntitySet Name="listaenGrupos" EntityType="EscuelaModel.listaenGrupos" />
+          <AssociationSet Name="FK__listaenGr__Alumn__09746778" Association="EscuelaModel.FK__listaenGr__Alumn__09746778">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Horar__0880433F" Association="EscuelaModel.FK__listaenGr__Horar__0880433F">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Horar__0C50D423" Association="EscuelaModel.FK__listaenGr__Horar__0C50D423">
+            <End Role="Horarios" EntitySet="Horarios" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Mater__0B5CAFEA" Association="EscuelaModel.FK__listaenGr__Mater__0B5CAFEA">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__listaenGr__Profe__0A688BB1" Association="EscuelaModel.FK__listaenGr__Profe__0A688BB1">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="listaenGrupos" EntitySet="listaenGrupos" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="listaenGrupos">
+          <Key>
+            <PropertyRef Name="ID_GrupoAlum" />
+          </Key>
+          <Property Name="ID_GrupoAlum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grupo_ID" Type="Int32" />
+          <Property Name="Alumno_ID" Type="Int32" />
+          <Property Name="Profe_ID" Type="Int32" />
+          <Property Name="Materia_ID" Type="Int32" />
+          <Property Name="Horario_ID" Type="Int32" />
+          <NavigationProperty Name="Alumnos" Relationship="EscuelaModel.FK__listaenGr__Alumn__09746778" FromRole="listaenGrupos" ToRole="Alumnos" />
+          <NavigationProperty Name="Grupos" Relationship="EscuelaModel.FK__listaenGr__Horar__0880433F" FromRole="listaenGrupos" ToRole="Grupos" />
+          <NavigationProperty Name="Horarios" Relationship="EscuelaModel.FK__listaenGr__Horar__0C50D423" FromRole="listaenGrupos" ToRole="Horarios" />
+          <NavigationProperty Name="Materias" Relationship="EscuelaModel.FK__listaenGr__Mater__0B5CAFEA" FromRole="listaenGrupos" ToRole="Materias" />
+          <NavigationProperty Name="Profesores" Relationship="EscuelaModel.FK__listaenGr__Profe__0A688BB1" FromRole="listaenGrupos" ToRole="Profesores" />
+        </EntityType>
+        <Association Name="FK__listaenGr__Alumn__09746778">
+          <End Type="EscuelaModel.Alumnos" Role="Alumnos" Multiplicity="0..1" />
+          <End Type="EscuelaModel.listaenGrupos" Role="listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Alumno_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Horar__0880433F">
+          <End Type="EscuelaModel.Grupos" Role="Grupos" Multiplicity="0..1" />
+          <End Type="EscuelaModel.listaenGrupos" Role="listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="ID_Grupo" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Grupo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Horar__0C50D423">
+          <End Type="EscuelaModel.Horarios" Role="Horarios" Multiplicity="0..1" />
+          <End Type="EscuelaModel.listaenGrupos" Role="listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horarios">
+              <PropertyRef Name="ID_Horario" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Horario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Mater__0B5CAFEA">
+          <End Type="EscuelaModel.Materias" Role="Materias" Multiplicity="0..1" />
+          <End Type="EscuelaModel.listaenGrupos" Role="listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Materia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__listaenGr__Profe__0A688BB1">
+          <End Type="EscuelaModel.Profesores" Role="Profesores" Multiplicity="0..1" />
+          <End Type="EscuelaModel.listaenGrupos" Role="listaenGrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID_Profesor" />
+            </Principal>
+            <Dependent Role="listaenGrupos">
+              <PropertyRef Name="Profe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -575,6 +770,18 @@
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
                 <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="listaenGrupos">
+            <EntityTypeMapping TypeName="EscuelaModel.listaenGrupos">
+              <MappingFragment StoreEntitySet="listaenGrupos">
+                <ScalarProperty Name="Horario_ID" ColumnName="Horario_ID" />
+                <ScalarProperty Name="Materia_ID" ColumnName="Materia_ID" />
+                <ScalarProperty Name="Profe_ID" ColumnName="Profe_ID" />
+                <ScalarProperty Name="Alumno_ID" ColumnName="Alumno_ID" />
+                <ScalarProperty Name="Grupo_ID" ColumnName="Grupo_ID" />
+                <ScalarProperty Name="ID_GrupoAlum" ColumnName="ID_GrupoAlum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -33,5 +33,6 @@ namespace JSLZ_MVC_Escuela.Models
         public virtual DbSet<Materias> Materias { get; set; }
         public virtual DbSet<Profesores> Profesores { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<listaenGrupos> listaenGrupos { get; set; }
     }
 }

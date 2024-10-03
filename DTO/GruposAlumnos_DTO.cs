@@ -8,13 +8,13 @@ namespace DTO
 {
     public class GruposAlumnos_DTO
     {
+        public int c_ { get; set; }
         public int ID_Grupo {get; set;}
-        public string nom_Grupo {get; set;}
+        public string Nombre_Grupo {get; set;}
         public int ID_Alumno {get; set;}
-        public string nom_Alumno {get; set;}
-        public string ap_Alumo {get; set;}
+        public string Nombre_Alumno {get; set;}
         public int ID_Profe {get; set;}
-        public string nom_Profe
+        public string Nombre_Profe { get;set; }
         public string Materia {get; set;}
         public string Horario { get; set; }
     }

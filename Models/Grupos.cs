@@ -18,6 +18,7 @@ namespace JSLZ_MVC_Escuela.Models
         public Grupos()
         {
             this.Alumnos_Grupos = new HashSet<Alumnos_Grupos>();
+            this.listaenGrupos = new HashSet<listaenGrupos>();
         }
     
         public int ID_Grupo { get; set; }
@@ -31,5 +32,7 @@ namespace JSLZ_MVC_Escuela.Models
         public virtual Horarios Horarios { get; set; }
         public virtual Materias Materias { get; set; }
         public virtual Profesores Profesores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<listaenGrupos> listaenGrupos { get; set; }
     }
 }

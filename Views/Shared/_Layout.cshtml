@@ -1,30 +1,65 @@
-﻿<!DOCTYPE html>
+﻿@{
+    //recupero la variable de sesion
+    var x = Session["N_Usuario"] as string;
+
+}
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Escuela", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+
+            @if (x != null)
+            {
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            }
+            else
+            {
+                @Html.ActionLink("Escuela", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            }
+
+
+
+
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+
+            @if (x != null)
+            {
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Checar Grupos", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Asignar Calificación", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Checar Grupos", "Index", "Grupo", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Asignar Calificación", "Index", "AlumnosCalificaciones", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
-            </div>
+
+
+                    <div>
+                        <h5 style="color:aliceblue">Hola @x!</h5>
+                        <ul>
+                            <li>@Html.ActionLink("Cerrar Sesion","Logout","Login" , new {area =""},new {@class ="btn btn-danger"})</li>
+                        </ul>  
+                    </div>
+            }
+
+
+        </div>
         </div>
     </nav>
     <div class="container body-content">
+        @Html.Partial("_sweetAlert")
         @RenderBody()
         <hr />
         <footer>

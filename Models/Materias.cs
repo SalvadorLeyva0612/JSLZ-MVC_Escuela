@@ -19,6 +19,7 @@ namespace JSLZ_MVC_Escuela.Models
         {
             this.Calificaciones = new HashSet<Calificaciones>();
             this.Grupos = new HashSet<Grupos>();
+            this.listaenGrupos = new HashSet<listaenGrupos>();
         }
     
         public int ID_Materia { get; set; }
@@ -28,5 +29,7 @@ namespace JSLZ_MVC_Escuela.Models
         public virtual ICollection<Calificaciones> Calificaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grupos> Grupos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<listaenGrupos> listaenGrupos { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace JSLZ_MVC_Escuela.Controllers
                         TempData["sweetalert"] =
                         SweetAlert.Sweet_Alert("Bienvenido", $"Bienvenido Picios@{dbUsario.Nombre_Usuario}", NotificationType.success); 
 
-                       return RedirectToAction("Index", "Home");
+                       return RedirectToAction("Index", "Grupo/Index");
                     }
                     else
                     {

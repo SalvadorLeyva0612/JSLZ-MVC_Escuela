@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DTO.GruposAlumnos_DTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Grupo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Alumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Profe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+          
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Grupo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Alumno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Profe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Horario)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</main>
+
+
+
