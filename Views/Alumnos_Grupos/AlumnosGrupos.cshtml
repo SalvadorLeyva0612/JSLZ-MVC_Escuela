@@ -1,0 +1,59 @@
+﻿@model IEnumerable<JSLZ_MVC_Escuela.Models.Alumnos_Grupos>
+
+@{
+    ViewBag.Title = "AlumnosGrupos";
+}
+
+<h2>AlumnosGrupos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Alumnos.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupos.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupos.Materias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupos.Horarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupos.Profesores)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alumnos.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupos.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupos.Materias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupos.Horarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grupos.Profesores)
+        </td>
+
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID_Alumnos_Grupos }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID_Alumnos_Grupos }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID_Alumnos_Grupos })
+        </td>*@
+    </tr>
+}
+
+</table>

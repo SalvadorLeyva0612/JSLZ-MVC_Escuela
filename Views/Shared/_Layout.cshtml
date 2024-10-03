@@ -30,7 +30,7 @@
             }
             else
             {
-                @Html.ActionLink("Escuela", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Escuela", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
             }
 
 
@@ -42,7 +42,7 @@
             {
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Checar Grupos", "Index", "Grupo", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Asignar Calificación", "Index", "AlumnosCalificaciones", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Asignar Calificación", "agregarCalificacion", "AlumnosCalificaciones", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
 
 
